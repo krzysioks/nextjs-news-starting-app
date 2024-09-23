@@ -1,4 +1,5 @@
 import NewsList from "@/components/NewsList";
+import { getAllNews } from "@/utils/utils";
 
 export const metadata = {
 	title: "All News",
@@ -6,13 +7,7 @@ export const metadata = {
 };
 
 const NewsPage = async () => {
-	const response = await fetch("http://localhost:8080/news");
-
-	if (!response.ok) {
-		throw new Error("Failed to fetch news.");
-	}
-
-	const news = await response.json();
+	const news = await getAllNews();
 
 	return (
 		<>

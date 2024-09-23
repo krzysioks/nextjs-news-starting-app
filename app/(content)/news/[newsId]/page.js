@@ -1,5 +1,6 @@
-import { DUMMY_NEWS } from "@/dummy-news";
 import { notFound } from "next/navigation";
+
+import { getNewsItem } from "@/utils/utils";
 import Link from "next/link";
 
 export const generateMetadata = async ({ params }) => {
@@ -18,7 +19,7 @@ export const generateMetadata = async ({ params }) => {
 
 const NewsDetailsPage = async ({ params }) => {
 	const newsSlug = params.newsId;
-	const newsItem = DUMMY_NEWS.find((news) => news.slug === newsSlug);
+	const newsItem = await getNewsItem(newsSlug);
 
 	if (!newsItem) {
 		return notFound();
